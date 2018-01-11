@@ -2,6 +2,8 @@
 
 import socketserver
 
+PORT=80
+
 class CmdHttpHandler(socketserver.BaseRequestHandler):
     def handle(self):
         self.data = self.request.recv(2**14).strip().decode("UTF-8")
@@ -41,7 +43,7 @@ def main():
     print("The computer may be stalled by some commands, just try again")
     print()
 
-    with socketserver.TCPServer(("0.0.0.0", 1338), CmdHttpHandler) as server:
+    with socketserver.TCPServer(("0.0.0.0", PORT), CmdHttpHandler) as server:
         server.serve_forever()
 
 
